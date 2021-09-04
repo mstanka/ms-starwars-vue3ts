@@ -25,7 +25,10 @@
 
 .nav {
   background: $primary-color;
-  padding: 1rem 0;
+
+  @include media-md {
+    padding: 1rem 0;
+  }
 
   &__links {
     @include flex(column, center);
@@ -35,14 +38,22 @@
   }
 
   &__link {
-    margin: 0 1rem;
+    width: 100%;
     font-size: 1.8rem;
     text-transform: uppercase;
+    @include media-md {
+      width: auto;
+      margin: 0 1rem;
+    }
 
     a {
+      width: 100%;
       color: $dark-color;
       padding: 0.3rem 1rem;
       border: 1px dotted $primary-color;
+      @include media-md {
+        width: auto;
+      }
 
       &:hover,
       &:focus,

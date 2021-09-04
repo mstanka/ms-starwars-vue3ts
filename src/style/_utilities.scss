@@ -9,6 +9,9 @@ body {
   min-height: 100vh;
   margin: 0 auto;
   max-width: 144rem;
+  font-family: "Commissioner", sans-serif;
+  text-align: center;
+  color: $dark-color;
 }
 
 picture,
@@ -32,5 +35,29 @@ p {
   @include media-lg {
     font-size: 1.8rem;
     line-height: 3.2rem;
+  }
+}
+
+h1 {
+  font-size: 4.2rem;
+  line-height: 4rem;
+  font-weight: 800;
+  @include media-md {
+    font-size: 5.6rem;
+    line-height: 5.6rem;
+    letter-spacing: 2px;
+  }
+  @include media-xl {
+    font-size: 8rem;
+    line-height: 8.8rem;
+  }
+}
+
+h2 {
+  font-size: 3rem;
+  line-height: 4rem;
+  @include media-xl {
+    font-size: 5.6rem;
+    line-height: 6.4rem;
   }
 }
