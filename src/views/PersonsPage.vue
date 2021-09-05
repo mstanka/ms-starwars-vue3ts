@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>This is Vehicles page</h1>
+    <h1>This is Persons page</h1>
   </div>
 </template>
 
@@ -8,6 +8,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "Vehicles",
+  name: "PersonsPage",
 });
 </script>

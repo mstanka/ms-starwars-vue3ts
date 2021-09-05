@@ -1,8 +1,6 @@
 <template>
-  <h2 v-if="isLoading">Loading vehicles....</h2>
-  <h2 v-else>No vehicles are available!</h2>
   <ul>
-    <Vehicle
+    <vehicle-item
       v-for="vehicle in vehicles"
       :key="vehicle.url"
       :url="vehicle.url"
@@ -12,38 +10,24 @@
       :passengers="vehicle.passengers"
       :cargo="vehicle.cargo_capacity"
       :cost="vehicle.cost_in_credits"
-    />
+    ></vehicle-item>
   </ul>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Vehicle from "../components/Vehicle.vue";
+import { defineComponent, PropType } from "vue";
+import Vehicle from "../types/Vehicle";
+import VehicleItem from "../components/VehicleItem.vue";
 
 export default defineComponent({
   name: "VehicleList",
   components: {
-    Vehicle,
+    VehicleItem,
   },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
-  computed: {
-    vehicles() {
-      return this.$store.getters.getVehicles;
-    },
-  },
-  methods: {
-    async fetchVehicles() {
-      this.isLoading = true;
-      try {
-        await this.$store.dispatch("fetchVehicles");
-      } catch (error) {
-        console.log(error);
-      }
-      this.isLoading = false;
+  props: {
+    vehicles: {
+      required: true,
+      type: Array as PropType<Vehicle[]>,
     },
   },
 });

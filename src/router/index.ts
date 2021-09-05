@@ -9,16 +9,16 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/persons",
-    name: "Persons",
+    name: "PersonsPage",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import("../views/Persons.vue"),
+    component: () => import("../views/PersonsPage.vue"),
   },
   {
     path: "/vehicles",
-    name: "Vehicles",
-    component: () => import("../views/Vehicles.vue"),
+    name: "VehiclesPage",
+    component: () => import("../views/VehiclesPage.vue"),
   },
 ];
 
