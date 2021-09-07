@@ -1,12 +1,9 @@
 <template>
   <div>
-    <h1>This is Vehicles page</h1>
+    <h1>Star Wars Vehicles</h1>
     <h2 v-if="isLoading">Loading vehicles....</h2>
-    <vehicle-list
-      v-else-if="hasVehicles && !isLoading"
-      :vehicles="vehicles"
-    ></vehicle-list>
-    <h2 v-else>No vehicles are available!</h2>
+    <h2 v-else-if="!hasVehicles">No vehicles are available!</h2>
+    <vehicle-list v-else :vehicles="vehicles"></vehicle-list>
   </div>
 </template>
 
@@ -22,22 +19,21 @@ export default defineComponent({
     return {
       isLoading: false,
       vehicles: [],
+      hasVehicles: false,
     };
   },
-  created() {
+  created(): void {
     this.isLoading = true;
-    return new Promise((resolve, reject) => {
-      axios
-        .get(`https://swapi.dev/api/vehicles/?page=1`)
-        .then((response) => resolve((this.vehicles = response.data.results)))
-        .catch((error) => reject(error));
-      this.isLoading = false;
-    });
-  },
-  computed: {
-    hasVehicles() {
-      return this.vehicles && this.vehicles.length > 0;
-    },
+    axios
+      .get(`https://swapi.dev/api/vehicles/?page=1`)
+      .then((response) => {
+        this.vehicles = response.data.results;
+        if (this.vehicles && this.vehicles.length > 0) {
+          this.isLoading = false;
+          this.hasVehicles = true;
+        }
+      })
+      .catch((error) => console.error(error));
   },
 });
 </script>
